@@ -22,6 +22,8 @@ import React from 'react';
 import Card from './card';
 import Button from './button';
 import Timer from './timer';
+import { Header } from './socketHeader';
+import { socket } from "./socketHeader";
 let questionBank = require('./public/questions.json');
 
 export default class App extends React.Component {
@@ -36,6 +38,19 @@ export default class App extends React.Component {
       gameStart: true,
       loading:false
     }
+  }
+
+  getCurrQuestion = (currQuestion) => {
+    this.setState({ currQuestion: currQuestion })
+  }
+
+  componentDidMount() {
+    socket.emit('heyheyhey', "what's up");
+    socket.on("getCurrQuestion", this.getCurrQuestion);
+  }
+
+  componentWillUnmount() {
+    socket.off("getCurrQuestion", this.getCurrQuestion);
   }
 
   checkAnswer(answer, correctAnswer) {
@@ -106,8 +121,9 @@ export default class App extends React.Component {
       return (
         
         <div>
+          <Header/>
           <Timer/>
-          <div class = "timer"></div>
+          <div className = "timer"></div>
           {this.jsonToArr(this.state.arr)}
           {this.state.gameStart ? (this.populateQuizCard(this.state.arr[this.state.currQuestion])) : (console.log("Exit"))}
         </div>

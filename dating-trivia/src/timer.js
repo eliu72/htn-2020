@@ -39,7 +39,7 @@ export default class Timer extends Component {
             <div>
             <div style= {{backgroundColor:"white",height:"32px", zIndex:"1"}}></div>
             
-            <div class ="timer-bar" style={{maxWidth: this.state.percentage+ '%',backgroundColor:"#71848A",height:"32px", marginTop:"-32px", zIndex:"5"}} >
+            <div className ="timer-bar" style={{maxWidth: this.state.percentage+ '%',backgroundColor:"#71848A",height:"32px", marginTop:"-32px", zIndex:"5"}} >
             </div>
                 <div style={{top:"-16px", position:"absolute",marginLeft:"16px", fontSize:"13px"}}>
                 { seconds === 0

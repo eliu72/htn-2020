@@ -30,7 +30,7 @@ export default class Card extends React.Component {
                 <footer>
                     {answers.map((answer, i) => {
                         return (
-                        <Button
+                        <Button key={i}
                             option={answer}
                         >
                             
