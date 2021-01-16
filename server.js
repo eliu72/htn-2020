@@ -20,6 +20,7 @@ const io = socketio(httpServer, {
   }
 });
 
+const Chat = require('./models/chat');
 const chatRoutes = require('./routes/chatroute');
 app.use(chatRoutes);
 
@@ -32,9 +33,14 @@ const connect = mongoose.connect(url,
     // Listen on port 8000 using HTTP
     httpServer.listen(port, () => console.log(`Server started on port ${port}`));
 
-    // Connect to socket.io
-    io.on('connection',() => {
+    const users = [];
+    const connnections = [];
+
+    // Listen for new socket.io client connections
+    io.on('connection', (socket) => {
       const chats = mongoose.connection.db.collection('chats');
+      console.log('New user connected.');
+      connnections.push(socket);
 
       // Function to send status
       sendStatus = (status) => {
@@ -47,7 +53,28 @@ const connect = mongoose.connect(url,
         console.log("Getting the chat messages");
 
         // Emit the chat messages
-        io.emit('output', result);
+        io.emit('existingmessages', result);
+      });
+
+      // Receive message emitted from client
+      // socket.on('mymessage', (message) => {
+      //   console.log('message', `${socket.id.substr(0, 2)} said ${message}`)
+      //   io.emit('mymessage', message);
+
+      // })
+      socket.on('mymessage', (somedata) => {
+        console.log('message', `${socket.id.substr(0, 2)} said ${somedata}`)
+        io.emit('mymessage', somedata);
+        const chat = new Chat({
+          message: somedata,
+          sender: socket.id.substr(0, 2)
+        });
+      
+        chat.save();
+      })
+      // Disconnect
+      socket.on('disconnect', () => {
+        console.log('A user disconnected.');
       });
 
       io.on('heyheyhey', (data) => {
@@ -87,23 +114,4 @@ app.use(bodyParser.json());
 // Home route
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + 'client/index.html'));
-});
-
-const users = [];
-const connnections = [];
-
-// Listen for new socket.io client connections
-io.on('connection', (socket) => {
-  console.log('New user connected.');
-  connnections.push(socket);
-  
-  // Receive message emitted from client
-  socket.on('mymessage', (message) => {
-    console.log('message', `${socket.id.substr(0, 2)} said ${message}`)
-    io.emit('mymessage', message);
-
-  })
-  socket.on('disconnect', () => {
-    console.log('A user disconnected.');
-  });
 });
