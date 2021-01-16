@@ -45,3 +45,17 @@ code {
 .timer-bar {
   background-color: #71848A;
 }
+
+.logo{
+  background: #F7917A ; 
+  width: 380px;
+ }
+ 
+ .form-part label {
+  display: block;
+  padding:10px;
+  margin: 10px 0 0;
+
+}
+
+ 
