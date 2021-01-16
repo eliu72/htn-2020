@@ -13,3 +13,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.buttonFalse {
+  background-color: #F6F6F6;
+}
+
+.buttonTrue {
+  background-color: red;
+}
