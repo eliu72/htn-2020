@@ -13,6 +13,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.questions{
+  text-align: center;
+  margin-top: 30px;
+}
+.questions h1 {
+  margin-top: 200px;
+  margin-bottom: 50px;
+}
+
+.questions button{
+  width: 95%;
+  padding: 16px 16px;
+  margin-bottom: 8px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+
+}
 
 .buttonFalse {
   background-color: #F6F6F6;
@@ -21,10 +39,23 @@ code {
 .buttonTrue {
   background-color: red;
 }
-
 .timer {
   background-color: white;
 }
 .timer-bar {
   background-color: #71848A;
 }
+
+.logo{
+  background: #F7917A ; 
+  width: 380px;
+ }
+ 
+ .form-part label {
+  display: block;
+  padding:10px;
+  margin: 10px 0 0;
+
+}
+
+ 
