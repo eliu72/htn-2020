@@ -28,12 +28,13 @@ export default class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    //this.handleClick = this.handleClick.bind(this);
     
     this.state = {
       arr: [],
       currQuestion: 0,
-      gameStart: true
+      gameStart: true,
+      loading:false
     }
   }
 
@@ -61,15 +62,42 @@ export default class App extends React.Component {
     });
   }
 
-  handleClick = () => {
-    this.setState(prevState => {
-      console.log(this.state.currQuestion);
-       return {currQuestion: prevState.currQuestion + 1}
-    })
-    this.forceUpdate();
+  componentDidMount() {
+    this.stuff()
+  }
+
+  stuff(){
+    setTimeout(() => {
+      this.setState({
+        loading: true
+      });
+      this.forceUpdate();
+      setTimeout(() => {
+        this.setState({
+          loading: false
+        });
+        this.setState(prevState => {
+          this.stuff()
+          console.log(this.state.currQuestion);
+           return {currQuestion: prevState.currQuestion + 1}
+        })
+        this.forceUpdate();
+      }, 2000)
+    }, 10000)
+
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   render () {
+
+    if (this.state.loading)
+        return (
+            <div className="transition-screen"> 
+            <h1>transition</h1>
+            </div>
+        );
       const {
           quizData,
           rightAnswer,
@@ -82,7 +110,6 @@ export default class App extends React.Component {
           <div class = "timer"></div>
           {this.jsonToArr(this.state.arr)}
           {this.state.gameStart ? (this.populateQuizCard(this.state.arr[this.state.currQuestion])) : (console.log("Exit"))}
-          <button onClick={this.handleClick}>Next Question</button>
         </div>
       );
   }
