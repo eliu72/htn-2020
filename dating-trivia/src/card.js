@@ -4,9 +4,12 @@ import { Button } from "./button";
 export default class Card extends React.Component {
     constructor( props ){
         super(props);
+       
     }
-
+   
+  
     render (){
+        
         const {
             question,
             correctAnswer,
@@ -21,6 +24,7 @@ export default class Card extends React.Component {
         
         return (
             <article className="card">
+                <div class="questions">
                 <div>
                     <h1>{question}</h1>
                 </div>
@@ -35,6 +39,7 @@ export default class Card extends React.Component {
                         );
                     })}
                 </footer>
+                </div>
             </article>
         )
     }
