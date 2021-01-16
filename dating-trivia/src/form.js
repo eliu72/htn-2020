@@ -16,7 +16,7 @@ export default class Formj extends Component {
       <div>
         {element}
         {this.props.img}
-        <div class="form-part">
+        <div className="form-part">
 
         <form>
         <label>

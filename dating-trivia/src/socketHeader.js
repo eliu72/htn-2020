@@ -3,7 +3,7 @@ import socketIOClient from "socket.io-client";
 
 
 let socket;
-class Header extends Component {
+class SocketHeader extends Component {
 /* Creating a Socket client and exporting it at the end to be used across components*/
   constructor() {
     super();
@@ -22,4 +22,4 @@ class Header extends Component {
     );
   }
 }
-export { Header, socket };
+export { SocketHeader, socket };

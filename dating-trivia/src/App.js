@@ -22,7 +22,7 @@ import React from 'react';
 import Card from './card';
 import Button from './button';
 import Timer from './timer';
-import { Header } from './socketHeader';
+import { SocketHeader } from './socketHeader';
 import { socket } from "./socketHeader";
 import Formj from './form'; 
 let questionBank = require('./public/questions.json');
@@ -127,7 +127,7 @@ export default class App extends React.Component {
         <div>
          <Formj/>
         <div>
-          <Header/>
+          <SocketHeader/>
           <Timer/>
           <div className = "timer"></div>
           {this.jsonToArr(this.state.arr)}
