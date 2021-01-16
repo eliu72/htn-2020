@@ -25,8 +25,14 @@ export default class Timer extends Component {
     componentWillUnmount() {
         clearInterval(this.myInterval)
     }
-    
+    reset(){
+        this.setState(({ seconds, percentage }) => ({
+            seconds: 10,
+            percentage: 100
+        }))
 
+    }
+    
     render() {
         const {seconds,percentage} = this.state
         return (
