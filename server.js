@@ -11,8 +11,14 @@ const randomColor = require('randomcolor');
 const uuid = require('uuid');
 
 const app = express();
-const server = http.createServer(app);
-const io = socketio(server);
+const httpServer = http.createServer(app);
+const io = socketio(httpServer, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+});
 
 const chatRoutes = require('./routes/chatroute');
 app.use(chatRoutes);
@@ -24,7 +30,7 @@ const connect = mongoose.connect(url,
   { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => { console.log('Connected to MongoDB');
     // Listen on port 8000 using HTTP
-    server.listen(port, () => console.log(`Server started on port ${port}`));
+    httpServer.listen(port, () => console.log(`Server started on port ${port}`));
 
     // Connect to socket.io
     io.on('connection',() => {
@@ -43,6 +49,11 @@ const connect = mongoose.connect(url,
         // Emit the chat messages
         io.emit('output', result);
       });
+
+      io.on('heyheyhey', (data) => {
+        if (err) throw err;
+        console.log("Got the heyheyhey");
+      })
 
       // Handle input events
       io.on('input', (data) => {
