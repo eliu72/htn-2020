@@ -20,6 +20,7 @@
 
 import React from 'react';
 import Card from './card';
+import Timer from './timer';
 let questionBank = require('./public/questions.json');
 
 export default class App extends React.Component {
@@ -45,7 +46,7 @@ export default class App extends React.Component {
   //         />
   //     );
   // };
-
+//
   render () {
       const {
           quizData,
@@ -54,7 +55,14 @@ export default class App extends React.Component {
       } = this.props;
 
       return (
+        
         <div>
+          <Timer/>
+          <div class = "timer"> 
+            
+          </div>
+          
+          
           {questionBank.map((currQuestion, key) => {
             return (
               <Card 

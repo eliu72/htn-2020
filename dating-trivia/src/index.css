@@ -13,3 +13,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.timer {
+  background-color: white;
+}
+.timer-bar {
+  background-color: #71848A;
+}
