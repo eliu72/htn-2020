@@ -24,7 +24,9 @@ import Button from './button';
 import Timer from './timer';
 import { Header } from './socketHeader';
 import { socket } from "./socketHeader";
+import Formj from './form'; 
 let questionBank = require('./public/questions.json');
+
 
 export default class App extends React.Component {
 
@@ -104,6 +106,8 @@ export default class App extends React.Component {
   componentWillUnmount() {
     clearInterval(this.interval);
   }
+  
+  
 
   render () {
 
@@ -119,13 +123,17 @@ export default class App extends React.Component {
       } = this.props;
 
       return (
-        
+        <div>
+         <Formj/>
         <div>
           <Header/>
           <Timer/>
           <div className = "timer"></div>
           {this.jsonToArr(this.state.arr)}
           {this.state.gameStart ? (this.populateQuizCard(this.state.arr[this.state.currQuestion])) : (console.log("Exit"))}
+          <button onClick={this.handleClick}>Next Question</button>
+          
+        </div>
         </div>
       );
   }
