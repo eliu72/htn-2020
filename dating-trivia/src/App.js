@@ -32,13 +32,14 @@ export default class App extends React.Component {
 
   constructor(props) {
     super(props);
-    //this.handleClick = this.handleClick.bind(this);
+  this.beginGame = this.beginGame.bind(this);
     
     this.state = {
       arr: [],
       currQuestion: 0,
       gameStart: true,
-      loading:false
+      loading:false,
+      isLogin:true
     }
   }
 
@@ -107,17 +108,28 @@ export default class App extends React.Component {
   componentWillUnmount() {
     clearInterval(this.interval);
   }
-  
-  
+  beginGame(){
+    this.setState({
+      isLogin: false
+    });
+    this.forceUpdate();
+  }  
 
   render () {
-
     if (this.state.loading)
         return (
             <div className="transition-screen"> 
             <h1>transition</h1>
             </div>
         );
+    if (this.state.isLogin)
+          return (
+            <div>
+              <Formj/>
+              <button onClick={this.beginGame}>Submit</button>
+            </div>
+          );
+          
       const {
           quizData,
           rightAnswer,
@@ -125,15 +137,12 @@ export default class App extends React.Component {
 
       return (
         <div>
-         <Formj/>
         <div>
           <Header/>
           <Timer/>
           <div className = "timer"></div>
           {this.jsonToArr(this.state.arr)}
           {this.state.gameStart ? (this.populateQuizCard(this.state.arr[this.state.currQuestion])) : (console.log("Exit"))}
-          <button onClick={this.handleClick}>Next Question</button>
-          
         </div>
         </div>
       );
