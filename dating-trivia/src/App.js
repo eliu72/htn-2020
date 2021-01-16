@@ -33,13 +33,15 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
   this.beginGame = this.beginGame.bind(this);
+  this.stuff = this.stuff.bind(this);
     
     this.state = {
       arr: [],
       currQuestion: 0,
       gameStart: true,
       loading:false,
-      isLogin:true
+      isLogin:true,
+      yourTurn:true
     }
   }
 
@@ -98,7 +100,13 @@ export default class App extends React.Component {
         this.setState(prevState => {
           this.stuff()
           console.log(this.state.currQuestion);
-           return {currQuestion: prevState.currQuestion + 1}
+          if (this.state.yourTurn){
+            this.state.yourTurn= false
+            return {currQuestion: prevState.currQuestion}
+          }
+          else
+            return {currQuestion: prevState.currQuestion + 1}
+
         })
         this.forceUpdate();
       }, 2000)
@@ -108,6 +116,7 @@ export default class App extends React.Component {
   componentWillUnmount() {
     clearInterval(this.interval);
   }
+
   beginGame(){
     this.setState({
       isLogin: false
