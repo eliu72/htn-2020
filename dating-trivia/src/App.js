@@ -1,5 +1,6 @@
 import { Question } from "./question";
 import { Option } from "./option";
+import { Timer } from "./timer";
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
       <Option option="Never" />
       <Option option="It might be nice" />
       <Option option="I used to want to" />
+      <Timer />
     </div>
+    
   );
 }
 
