@@ -21,6 +21,7 @@
 import React from 'react';
 import Card from './card';
 import Button from './button';
+import Timer from './timer';
 let questionBank = require('./public/questions.json');
 
 export default class App extends React.Component {
@@ -38,6 +39,7 @@ export default class App extends React.Component {
 
   checkAnswer(answer, correctAnswer) {
     // this method checks if the correct answer was selected     
+    //sup
   }
 
   populateQuizCard = (record) => {
@@ -74,7 +76,10 @@ export default class App extends React.Component {
       } = this.props;
 
       return (
+        
         <div>
+          <Timer/>
+          <div class = "timer"></div>
           {this.jsonToArr(this.state.arr)}
           {this.state.gameStart ? (this.populateQuizCard(this.state.arr[this.state.currQuestion])) : (console.log("Exit"))}
           <button onClick={this.handleClick}>Next Question</button>

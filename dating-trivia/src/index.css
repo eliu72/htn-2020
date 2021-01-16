@@ -21,3 +21,10 @@ code {
 .buttonTrue {
   background-color: red;
 }
+
+.timer {
+  background-color: white;
+}
+.timer-bar {
+  background-color: #71848A;
+}
