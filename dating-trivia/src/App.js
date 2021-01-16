@@ -20,6 +20,7 @@
 
 import React from 'react';
 import Card from './card';
+import Button from './button';
 import Timer from './timer';
 let questionBank = require('./public/questions.json');
 
@@ -27,6 +28,13 @@ export default class App extends React.Component {
 
   constructor(props) {
     super(props);
+    this.handleClick = this.handleClick.bind(this);
+    
+    this.state = {
+      arr: [],
+      currQuestion: 0,
+      gameStart: true
+    }
   }
 
   checkAnswer(answer, correctAnswer) {
@@ -34,49 +42,48 @@ export default class App extends React.Component {
     //sup
   }
 
-  // populateQuizCard = (record, index) => {
-  //     const { correct_answer, incorrect_answers, question } = record;
-  //     return (
-  //         <Card
-  //             key={index}
-  //             checkAnswerFn={this.checkAnswer}
-  //             question={atob(question)}
-  //             correctAnswer={atob(correct_answer)}
-  //             wrongAnswers={incorrect_answers.map(x => TextareaAutosize(x))}
-  //         />
-  //     );
-  // };
-//
+  populateQuizCard = (record) => {
+      return (
+        <Card 
+          question={record.question}
+          a1={record.a1}
+          a2={record.a2}
+          a3={record.a3}
+          a4={record.a4}
+          correctAnswer={record.correct}
+        />
+      );
+  };
+
+  jsonToArr(arr){
+    Object.keys(questionBank).forEach(function (key) {
+      arr.push(questionBank[key]);
+    });
+  }
+
+  handleClick = () => {
+    this.setState(prevState => {
+      console.log(this.state.currQuestion);
+       return {currQuestion: prevState.currQuestion + 1}
+    })
+    this.forceUpdate();
+  }
+
   render () {
       const {
           quizData,
           rightAnswer,
-          currentQuestion,
       } = this.props;
 
       return (
         
         <div>
           <Timer/>
-          <div class = "timer"> 
-            
-          </div>
-          
-          
-          {questionBank.map((currQuestion, key) => {
-            return (
-              <Card 
-                question={currQuestion.question}
-                a1={currQuestion.a1}
-                a2={currQuestion.a2}
-                a3={currQuestion.a3}
-                a4={currQuestion.a4}
-                correctAnswer={currQuestion.correct}
-              />
-            )
-          })}
+          <div class = "timer"></div>
+          {this.jsonToArr(this.state.arr)}
+          {this.state.gameStart ? (this.populateQuizCard(this.state.arr[this.state.currQuestion])) : (console.log("Exit"))}
+          <button onClick={this.handleClick}>Next Question</button>
         </div>
-
       );
   }
 }
