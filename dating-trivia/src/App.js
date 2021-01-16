@@ -45,12 +45,13 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    socket.emit('heyheyhey', "what's up");
+    socket.emit('mymessage', "what's up");
     socket.on("getCurrQuestion", this.getCurrQuestion);
   }
 
   componentWillUnmount() {
     socket.off("getCurrQuestion", this.getCurrQuestion);
+    socket.off("heyheyhey", this.getCurrQuestion);
   }
 
   checkAnswer(answer, correctAnswer) {
