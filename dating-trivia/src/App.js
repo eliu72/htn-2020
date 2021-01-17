@@ -41,7 +41,7 @@ export default class App extends React.Component {
       gameStart: true,
       loading:false,
       isLogin:true,
-      selectedValue: ""
+      selectedValue: "",
       yourTurn:true,
       titles: [],
       transitionCount: 1
