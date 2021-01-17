@@ -11,6 +11,7 @@ export default class Formj extends Component {
   constructor(props) {
     super(props)
     }
+
   
     render() {
       const element = (<img src={logo} class ="logo" alt="logo" />)
@@ -59,6 +60,7 @@ export default class Formj extends Component {
       </form>
       </div>
       </div>
+
 
       
       );
