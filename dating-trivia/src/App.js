@@ -56,7 +56,6 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    this.stuff();
     socket.emit('mymessage', "what's up");
     socket.on("connect", () => {
       console.log("hey i'm here");
@@ -74,9 +73,6 @@ export default class App extends React.Component {
     //sup
   }
   transitions (){
-    this.setState({
-      loading: true
-    });
     console.log("start first")
     this.myInterval = setInterval(() => {
       this.setState({
@@ -89,11 +85,6 @@ export default class App extends React.Component {
         });
         console.log("start third")
         this.myInterval = setInterval(() => {
-          this.setState({
-            loading: false,
-            gameStart: true,
-            transitionCount: this.state.transitionCount+1
-          });
         }, 2000)
       }, 2000)
   }, 2000)
@@ -120,8 +111,18 @@ export default class App extends React.Component {
   }
 
   beginGame(){
+    this.setState({
+      loading: true
+    });
+    console.log("begin game is called")
     this.setState({isLogin: false})
     this.transitions()
+    console.log("transitions are over")
+    this.setState({
+      loading: false,
+      gameStart: true,
+      transitionCount: this.state.transitionCount+1
+    });
     this.stuff()
   }
 
