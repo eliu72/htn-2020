@@ -6,7 +6,6 @@ import { socket } from "./socketHeader";
 import { Header } from './socketHeader';
 import { makeStyles } from '@material-ui/core/styles';
 
-
 export const Card = (props) => {
 
     const [question, setQuestion] = useState("");

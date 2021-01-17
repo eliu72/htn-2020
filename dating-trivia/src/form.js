@@ -1,3 +1,4 @@
+  
 import React, {Component} from 'react';
 import logo from './logo.png'; // import the background image
 import Form from 'react-bootstrap/Form';
@@ -25,40 +26,44 @@ export default class Formj extends Component {
         {this.props.img}
         <div class="form-part">
 
-          <form>
-            <label>
-              My name is
-              <input type="text" name="name" />
-            </label>
-            
-            <label>
-              I Identify as 
-              <select name="animal">
-                <option value="male">male</option>
-                <option value="female">female</option>
-                <option value="transgender">transgender</option>
-                <option value="transgender">other</option>
-              </select>
-            </label>
+        <form>
+        <label>
+          My name is
+          <input type="text" name="name" />
+        </label>
+        
+        <label>
+          I Identify as 
+          <select name="gender">
+            <option value="man">male</option>
+            <option value="women">female</option>
+            <option value="transgender">transgender</option>
+            <option value="non-binary">non-binary</option>
+            <option value="other">other</option>
 
-            <label>
-              I'm looking for
-              <input type="text" name="partnerGender" />
-            </label>
+         </select>
+        </label>
 
-            <label>
-              My age is 
-              <input type="text" name="age" />
-            </label>
+        <label>
+          I'm looking for
+          <select name="gender">
+            <option value="man">male</option>
+            <option value="women">female</option>
+            <option value="transgender">transgender</option>
+            <option value="non-binary">other</option>
+            <option value="other">other</option>
 
-            <DoubleSlider/>
-
-          </form>
-        </div>
+         </select>
+        </label>
+        <label>
+          My age is 
+          <input type="text" name="name" />
+        </label>
+      </form>
+      </div>
       </div>
 
       
       );
     }
   }
-
