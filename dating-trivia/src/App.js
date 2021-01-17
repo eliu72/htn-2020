@@ -41,6 +41,7 @@ export default class App extends React.Component {
       gameStart: false,
       loading:false,
       isLogin:true,
+      selectedValue: "",
       yourTurn:true,
       titles: ["Matching","Match found!", "10 Rounds of personal trivia", "Choose your answer", "Now guess your match's answer","","", "Success! It's a match", "Darn, it was not a match"],
       transitionCount: 0
@@ -133,6 +134,7 @@ export default class App extends React.Component {
             });
             return {currQuestion: prevState.currQuestion}
           }
+          
           else
             return {currQuestion: prevState.currQuestion + 1}
 
@@ -149,6 +151,12 @@ export default class App extends React.Component {
     this.state.isLogin=false;
     this.transitions()
   }  
+
+  setSelectedValue(value) {
+    this.setState({
+      selectedValue: value
+    });
+  }
 
   render () {
     if (this.state.loading)
