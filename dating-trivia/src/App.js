@@ -56,7 +56,6 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    this.stuff();
     socket.emit('mymessage', "what's up");
     socket.on("connect", () => {
       console.log("hey i'm here");
@@ -121,6 +120,7 @@ export default class App extends React.Component {
   beginGame(){
     this.setState({isLogin: false})
     this.transitions()
+    this.stuff()
   }
 
   setSelectedValue(value) {
