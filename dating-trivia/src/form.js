@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import logo from './logo.png'; // import the background image
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import DoubleSlider from './doubleSlider';
+import Slider from './slider';
 
 
 export default class Formj extends Component {
@@ -52,6 +54,8 @@ export default class Formj extends Component {
           My age is 
           <input type="text" name="name" />
         </label>
+        <Slider/>
+        <DoubleSlider/>
       </form>
       </div>
       </div>
