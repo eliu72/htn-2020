@@ -1,0 +1,83 @@
+{
+    "members": [{
+            "question": "Right now I...",
+            "a1": "Want to be in a relationship",
+            "a2": "Feel content with being single",
+            "a3": "Think it'd be nice to be in a relationship",
+            "a4": "Am curious as to who's out there",
+            "correct": ""
+        },
+        {
+            "question": "Which one of these lifestyles speaks to you the most?",
+            "a1": "Having a family",
+            "a2": "Travelling and working remotely",
+            "a3": "Working hard and playing hard",
+            "a4": "Just taking things easy",
+            "correct": ""
+        },
+        {
+            "question": "What is one of your love languages?",
+            "a1": "Words of affirmation",
+            "a2": "Physical touch",
+            "a3": "Acts of service or gifts",
+            "a4": "Quality time",
+            "correct": ""
+        },
+        {
+            "question": "Which sounds like a great weekend?",
+            "a1": "Sleeping in",
+            "a2": "Going out with friends",
+            "a3": "Bingeing Netflix",
+            "a4": "Cooking and baking",
+            "correct": ""
+        },
+        {
+            "question": "Does it matter if your family approves of your partner?",
+            "a1": "Yes ",
+            "a2": "No",
+            "a3": "A little",
+            "a4": "I'm not sure",
+            "correct": ""
+        },
+        {
+            "question": "I wish I had someone I could share..",
+            "a1": "My deepest secrets ",
+            "a2": "My everyday things",
+            "a3": "Life updates",
+            "a4": "Everything and anything",
+            "correct": ""
+        },
+        {
+            "question": "Pick a quote that speaks to you",
+            "a1": "Believe you can and you're halfway there.",
+            "a2": "Life is like riding a bicycle. To keep your balance, you must keep moving.",
+            "a3": "Try to be a rainbow in someone else's cloud",
+            "a4": "Sometimes you will never know the value of a moment, until it becomes a memory.",
+            "correct": ""
+        },
+        {
+            "question": "Which of these could you live without?",
+            "a1": "Your phone",
+            "a2": "Junk food",
+            "a3": "Social media",
+            "a4": "None of them",
+            "correct": ""
+        },
+        {
+            "question": "Which sounds like the best vacation? ",
+            "a1": "A camping trip",
+            "a2": "An all inclusive beach resort getaway",
+            "a3": "Travelling through Japan",
+            "a4": "Backpacking through Europe",
+            "correct": ""
+        },
+        {
+            "question": "Which of these problems is the most relatable",
+            "a1": "Struggling to wake up",
+            "a2": "Struggling to stay productive",
+            "a3": "Struggling with keeping in touch",
+            "a4": "Struggling to stay active and healthy",
+            "correct": ""
+        }
+    ]
+}

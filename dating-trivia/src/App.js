@@ -39,7 +39,8 @@ export default class App extends React.Component {
       currQuestion: 0,
       gameStart: true,
       loading:false,
-      isLogin:true
+      isLogin:true,
+      selectedValue: ""
     }
   }
 
@@ -114,6 +115,12 @@ export default class App extends React.Component {
     });
     this.forceUpdate();
   }  
+
+  setSelectedValue(value) {
+    this.setState({
+      selectedValue: value
+    });
+  }
 
   render () {
     if (this.state.loading)
