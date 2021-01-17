@@ -25,8 +25,9 @@ import Timer from './timer';
 import { Header } from './socketHeader';
 import { socket } from "./socketHeader";
 import Formj from './form'; 
-let questionBank = require('./public/questions.json');
+import Slider from './slider.js'
 
+let questionBank = require('./public/questions.json');
 
 export default class App extends React.Component {
 
@@ -44,7 +45,7 @@ export default class App extends React.Component {
       selectedValue: "",
       yourTurn:true,
       titles: [],
-      transitionCount: 1
+      transitionCount: 1,
     }
   }
 
@@ -151,6 +152,7 @@ export default class App extends React.Component {
     if (this.state.isLogin)
           return (
             <div>
+              <Header/>
               <Formj/>
               <button onClick={this.beginGame}>Submit</button>
             </div>
@@ -163,13 +165,12 @@ export default class App extends React.Component {
 
       return (
         <div>
-        <div>
           <Header/>
           <Timer/>
+          <Slider/>
           <div className = "timer"></div>
           {this.jsonToArr(this.state.arr)}
           {this.state.gameStart ? (this.populateQuizCard(this.state.arr[this.state.currQuestion])) : (console.log("Exit"))}
-        </div>
         </div>
       );
   }
