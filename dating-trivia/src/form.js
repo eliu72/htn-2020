@@ -53,7 +53,7 @@ export default class Formj extends Component {
           My age is 
           <input type="text" name="name" />
         </label>
-
+        <Slider/>
         <DoubleSlider/>
       </form>
       </div>
