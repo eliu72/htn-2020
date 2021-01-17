@@ -50,7 +50,7 @@ export default class Formj extends Component {
             <option value="man">male</option>
             <option value="women">female</option>
             <option value="transgender">transgender</option>
-            <option value="non-binary">other</option>
+            <option value="non-binary">non-binary</option>
             <option value="other">other</option>
 
          </select>
