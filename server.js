@@ -42,13 +42,13 @@ const connect = mongoose.connect(url,
       console.log('New user connected.');
       
       // Immediately emit chats from the mongo collection
-      chats.find().limit(100).sort({_id:1}).toArray((err, result) => {
-        if (err) throw err;
-        console.log("Getting the chat messages");
+      // chats.find().limit(100).sort({_id:1}).toArray((err, result) => {
+      //   if (err) throw err;
+      //   console.log("Getting the chat messages");
 
-        // Emit the chat messages
-        io.emit('existingmessages', result);
-      });
+      //   // Emit the chat messages
+      //   io.emit('existingmessages', result);
+      // });
 
       // Receive message emitted from client
       // socket.on('mymessage', (message) => {

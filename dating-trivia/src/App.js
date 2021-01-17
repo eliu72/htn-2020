@@ -57,9 +57,9 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.stuff();
-    socket.emit('mymessage', "what's up");
     socket.on("connect", () => {
       console.log("hey i'm here");
+      socket.emit('mymessage', "what's up");
     });
   }
 
