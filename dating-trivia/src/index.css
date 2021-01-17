@@ -31,7 +31,10 @@ code {
   font-size: 16px;
 
 }
-
+.transition-screen {
+  text-align: center;
+  margin-top: 300px;
+}
 .buttonFalse {
   background-color: #F6F6F6;
 }
