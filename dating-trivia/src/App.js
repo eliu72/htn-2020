@@ -120,7 +120,7 @@ export default class App extends React.Component {
   }
 
   beginGame(){
-    this.state.isLogin=false;
+    this.setState({isLogin: false})
     this.transitions()
   }
 
@@ -131,20 +131,30 @@ export default class App extends React.Component {
   }
 
   render () {
-      const {
-          quizData,
-          rightAnswer,
-      } = this.props;
+    if (this.state.loading)
+    return (
+        <div className="transition-screen"> 
+        <h1>{this.state.titles[this.state.transitionCount]}</h1>
+        </div>
+    );
+
+
+    if (this.state.isLogin)
+      return (
+        <div>
+          <Header/>
+          <Formj/>
+          <button onClick={this.beginGame}>Submit</button>
+        </div>
+      );
 
       return (
-        
         <div>
           <Header/>
           <Timer/>
           <div className = "timer"></div>
           {this.jsonToArr(this.state.arr)}
           {this.state.gameStart ? (this.populateQuizCard(this.state.arr[this.state.currQuestion])) : (console.log("Exit"))}
-          <button onClick={this.handleClick}>Next Question</button>
         </div>
       );
   }
