@@ -27,18 +27,26 @@ export default class Formj extends Component {
         
         <label>
           I Identify as 
-          <select name="animal">
-            <option value="male">male</option>
-            <option value="female">female</option>
+          <select name="gender">
+            <option value="man">male</option>
+            <option value="women">female</option>
             <option value="transgender">transgender</option>
-            <option value="transgender">other</option>
+            <option value="non-binary">non-binary</option>
+            <option value="other">other</option>
 
          </select>
         </label>
 
         <label>
           I'm looking for
-          <input type="text" name="name" />
+          <select name="gender">
+            <option value="man">male</option>
+            <option value="women">female</option>
+            <option value="transgender">transgender</option>
+            <option value="non-binary">other</option>
+            <option value="other">other</option>
+
+         </select>
         </label>
         <label>
           My age is 

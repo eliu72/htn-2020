@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Card from './card';
 import Button from './button';
@@ -133,11 +132,10 @@ export default class App extends React.Component {
   render () {
     if (this.state.loading)
     return (
-        <div className="transition-screen"> 
+      <div className="transition-screen"> 
         <h1>{this.state.titles[this.state.transitionCount]}</h1>
-        </div>
+      </div>
     );
-
 
     if (this.state.isLogin)
       return (
