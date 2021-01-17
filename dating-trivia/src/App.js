@@ -33,6 +33,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
   this.beginGame = this.beginGame.bind(this);
+  this.stuff = this.stuff.bind(this);
     
     this.state = {
       arr: [],
@@ -41,6 +42,9 @@ export default class App extends React.Component {
       loading:false,
       isLogin:true,
       selectedValue: ""
+      yourTurn:true,
+      titles: [],
+      transitionCount: 1
     }
   }
 
@@ -61,6 +65,10 @@ export default class App extends React.Component {
   checkAnswer(answer, correctAnswer) {
     // this method checks if the correct answer was selected     
     //sup
+  }
+  transitions (){
+    this.state.titles = ["Matching","Match found!", "10 Rounds of personal trivia", "Choose your answer", "Now guess your match's answer","","", "Success! It's a match", "Darn, it was not a match"]
+    
   }
 
   populateQuizCard = (record) => {
@@ -99,7 +107,14 @@ export default class App extends React.Component {
         this.setState(prevState => {
           this.stuff()
           console.log(this.state.currQuestion);
-           return {currQuestion: prevState.currQuestion + 1}
+          if (this.state.yourTurn){
+            this.state.yourTurn= false
+            return {currQuestion: prevState.currQuestion}
+          }
+          
+          else
+            return {currQuestion: prevState.currQuestion + 1}
+
         })
         this.forceUpdate();
       }, 2000)
@@ -109,6 +124,7 @@ export default class App extends React.Component {
   componentWillUnmount() {
     clearInterval(this.interval);
   }
+
   beginGame(){
     this.setState({
       isLogin: false
@@ -126,8 +142,11 @@ export default class App extends React.Component {
     if (this.state.loading)
         return (
             <div className="transition-screen"> 
-            <h1>transition</h1>
+            {this.state.titles.map((title, index) => (
+            <p>{title} </p>
+            ))}
             </div>
+            
         );
     if (this.state.isLogin)
           return (
