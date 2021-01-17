@@ -41,7 +41,9 @@ export default class App extends React.Component {
       gameStart: true,
       loading:false,
       isLogin:true,
-      yourTurn:true
+      yourTurn:true,
+      titles: [],
+      transitionCount: 1
     }
   }
 
@@ -62,6 +64,10 @@ export default class App extends React.Component {
   checkAnswer(answer, correctAnswer) {
     // this method checks if the correct answer was selected     
     //sup
+  }
+  transitions (){
+    this.state.titles = ["Matching","Match found!", "10 Rounds of personal trivia", "Choose your answer", "Now guess your match's answer","","", "Success! It's a match", "Darn, it was not a match"]
+    
   }
 
   populateQuizCard = (record) => {
@@ -128,8 +134,11 @@ export default class App extends React.Component {
     if (this.state.loading)
         return (
             <div className="transition-screen"> 
-            <h1>transition</h1>
+            {this.state.titles.map((title, index) => (
+            <p>{title} </p>
+            ))}
             </div>
+            
         );
     if (this.state.isLogin)
           return (
