@@ -1,23 +1,3 @@
-// import { Question } from "./question";
-// import { Option } from "./option";
-// import Container from "@material-ui/core/Container";
-
-// function App() {
-//   return (
-//     <div>
-//       <Container maxWidth="xs">
-//         <Question question="Would you ever want to be famous?" />
-//         <Option option="Of course" />
-//         <Option option="Never" />
-//         <Option option="It might be nice" />
-//         <Option option="I used to want to" />
-//       </Container>
-//     </div>
-//   );
-// }
-
-// export default App;
-
 import React from 'react';
 import Card from './card';
 import Button from './button';
@@ -26,7 +6,6 @@ import { Header } from './socketHeader';
 import { socket } from "./socketHeader";
 import Formj from './form'; 
 let questionBank = require('./public/questions.json');
-
 
 export default class App extends React.Component {
 
@@ -47,19 +26,46 @@ export default class App extends React.Component {
       transitionCount: 0
     }
   }
+  
+  stuff(){
+    setTimeout(() => {
+      this.setState({
+        loading: true
+      });
+      setTimeout(() => {
+        this.setState({
+          loading: false
+        });
+        this.setState(prevState => {
+          this.stuff()
+        
+          if (this.state.yourTurn){
+            this.setState({
+              yourTurn: false
+            });
+            return {currQuestion: prevState.currQuestion}
+          }
+          
+          else
+            return {currQuestion: prevState.currQuestion + 1}
 
-  getCurrQuestion = (currQuestion) => {
-    this.setState({ currQuestion: currQuestion })
+        })
+      }, 2000)
+    }, 10000)
+
   }
 
   componentDidMount() {
+    this.stuff();
     socket.emit('mymessage', "what's up");
-    socket.on("getCurrQuestion", this.getCurrQuestion);
+    socket.on("connect", () => {
+      console.log("hey i'm here");
+    });
   }
 
   componentWillUnmount() {
-    socket.off("getCurrQuestion", this.getCurrQuestion);
-    socket.off("heyheyhey", this.getCurrQuestion);
+    socket.off("mymessage", () => {console.log("i'm here")});
+    clearInterval(this.interval);
   }
 
   checkAnswer(answer, correctAnswer) {
@@ -112,45 +118,10 @@ export default class App extends React.Component {
     });
   }
 
-  componentDidMount() {
-    this.stuff()
-  }
-
-  stuff(){
-    setTimeout(() => {
-      this.setState({
-        loading: true
-      });
-      setTimeout(() => {
-        this.setState({
-          loading: false
-        });
-        this.setState(prevState => {
-          this.stuff()
-        
-          if (this.state.yourTurn){
-            this.setState({
-              yourTurn: false
-            });
-            return {currQuestion: prevState.currQuestion}
-          }
-          
-          else
-            return {currQuestion: prevState.currQuestion + 1}
-
-        })
-      }, 2000)
-    }, 10000)
-
-  }
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
   beginGame(){
-    this.state.isLogin=false;
+    this.setState({isLogin: false})
     this.transitions()
-  }  
+  }
 
   setSelectedValue(value) {
     this.setState({
@@ -160,33 +131,28 @@ export default class App extends React.Component {
 
   render () {
     if (this.state.loading)
-        return (
-            <div className="transition-screen"> 
-            <h1>{this.state.titles[this.state.transitionCount]}</h1>
-            </div>
-        );
-    if (this.state.isLogin)
-          return (
-            <div>
-              <Formj/>
-              <button onClick={this.beginGame}>Submit</button>
-            </div>
-          );
-          
-      const {
-          quizData,
-          rightAnswer,
-      } = this.props;
+    return (
+      <div className="transition-screen"> 
+        <h1>{this.state.titles[this.state.transitionCount]}</h1>
+      </div>
+    );
 
+    if (this.state.isLogin)
       return (
         <div>
+          <Header/>
+          <Formj/>
+          <button onClick={this.beginGame}>Submit</button>
+        </div>
+      );
+
+      return (
         <div>
           <Header/>
           <Timer/>
           <div className = "timer"></div>
           {this.jsonToArr(this.state.arr)}
           {this.state.gameStart ? (this.populateQuizCard(this.state.arr[this.state.currQuestion])) : (console.log("Exit"))}
-        </div>
         </div>
       );
   }
