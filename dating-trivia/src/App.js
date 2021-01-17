@@ -38,13 +38,13 @@ export default class App extends React.Component {
     this.state = {
       arr: [],
       currQuestion: 0,
-      gameStart: true,
+      gameStart: false,
       loading:false,
       isLogin:true,
       selectedValue: "",
       yourTurn:true,
-      titles: [],
-      transitionCount: 1
+      titles: ["Matching","Match found!", "10 Rounds of personal trivia", "Choose your answer", "Now guess your match's answer","","", "Success! It's a match", "Darn, it was not a match"],
+      transitionCount: 0
     }
   }
 
@@ -67,7 +67,29 @@ export default class App extends React.Component {
     //sup
   }
   transitions (){
-    this.state.titles = ["Matching","Match found!", "10 Rounds of personal trivia", "Choose your answer", "Now guess your match's answer","","", "Success! It's a match", "Darn, it was not a match"]
+    this.setState({
+      loading: true
+    });
+    console.log("start first")
+    this.myInterval = setInterval(() => {
+      this.setState({
+        transitionCount: this.state.transitionCount+1
+      });
+      console.log("start second")
+      this.myInterval = setInterval(() => {
+        this.setState({
+          transitionCount: this.state.transitionCount+1
+        });
+        console.log("start third")
+        this.myInterval = setInterval(() => {
+          this.setState({
+            loading: false,
+            gameStart: true,
+            transitionCount: this.state.transitionCount+1
+          });
+        }, 2000)
+      }, 2000)
+  }, 2000)
     
   }
 
@@ -99,16 +121,17 @@ export default class App extends React.Component {
       this.setState({
         loading: true
       });
-      this.forceUpdate();
       setTimeout(() => {
         this.setState({
           loading: false
         });
         this.setState(prevState => {
           this.stuff()
-          console.log(this.state.currQuestion);
+        
           if (this.state.yourTurn){
-            this.state.yourTurn= false
+            this.setState({
+              yourTurn: false
+            });
             return {currQuestion: prevState.currQuestion}
           }
           
@@ -116,7 +139,6 @@ export default class App extends React.Component {
             return {currQuestion: prevState.currQuestion + 1}
 
         })
-        this.forceUpdate();
       }, 2000)
     }, 10000)
 
@@ -126,10 +148,8 @@ export default class App extends React.Component {
   }
 
   beginGame(){
-    this.setState({
-      isLogin: false
-    });
-    this.forceUpdate();
+    this.state.isLogin=false;
+    this.transitions()
   }  
 
   setSelectedValue(value) {
@@ -142,11 +162,8 @@ export default class App extends React.Component {
     if (this.state.loading)
         return (
             <div className="transition-screen"> 
-            {this.state.titles.map((title, index) => (
-            <p>{title} </p>
-            ))}
+            <h1>{this.state.titles[this.state.transitionCount]}</h1>
             </div>
-            
         );
     if (this.state.isLogin)
           return (
