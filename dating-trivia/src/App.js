@@ -142,10 +142,10 @@ export default class App extends React.Component {
 
     if (this.state.isLogin)
       return (
-        <div>
+        <div class = "wrapper">
           <Header/>
           <Formj/>
-          <button onClick={this.beginGame}>Submit</button>
+          <button  class="submit" onClick={this.beginGame}>Play Now</button>
         </div>
       );
 
