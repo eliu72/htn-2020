@@ -41,6 +41,7 @@ export default class App extends React.Component {
       gameStart: true,
       loading:false,
       isLogin:true,
+      selectedValue: ""
       yourTurn:true,
       titles: [],
       transitionCount: 1
@@ -110,6 +111,7 @@ export default class App extends React.Component {
             this.state.yourTurn= false
             return {currQuestion: prevState.currQuestion}
           }
+          
           else
             return {currQuestion: prevState.currQuestion + 1}
 
@@ -129,6 +131,12 @@ export default class App extends React.Component {
     });
     this.forceUpdate();
   }  
+
+  setSelectedValue(value) {
+    this.setState({
+      selectedValue: value
+    });
+  }
 
   render () {
     if (this.state.loading)
