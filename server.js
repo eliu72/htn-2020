@@ -40,14 +40,8 @@ const connect = mongoose.connect(url,
     io.on('connection', (socket) => {
       const chats = mongoose.connection.db.collection('chats');
       console.log('New user connected.');
-      connnections.push(socket);
-
-      // Function to send status
-      sendStatus = (status) => {
-        io.socket.emit('status', status);
-      }
-
-      // Get chats from the mongo collection
+      
+      // Immediately emit chats from the mongo collection
       chats.find().limit(100).sort({_id:1}).toArray((err, result) => {
         if (err) throw err;
         console.log("Getting the chat messages");
@@ -73,14 +67,12 @@ const connect = mongoose.connect(url,
         chat.save();
       })
       // Disconnect
-      socket.on('disconnect', () => {
+      io.on('disconnect', () => {
         console.log('A user disconnected.');
+        socket.removeAllListeners('send message');
+        socket.removeAllListeners('disconnect');
+        io.removeAllListeners('connection');
       });
-
-      io.on('heyheyhey', (data) => {
-        if (err) throw err;
-        console.log("Got the heyheyhey");
-      })
 
       // Handle input events
       io.on('input', (data) => {
